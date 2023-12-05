@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/Logo.svg'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
         <div className='py-3 px-10 sm:px-4 md:px-6 lg:px-4'>
@@ -10,7 +11,9 @@ const Navbar = () => {
                     <a href="" className=" text-[#191919] text-xl font-medium">Why FoodHut</a>
                     <a href="" className=" text-[#191919] text-xl font-medium">Our Menu</a>
                     <a href="" className=" text-[#191919] text-xl font-medium">Our Popular food</a>
-                    <button className="bg-[#F54748] active:scale-90 transition duration-150 transform hover:shadow-xl shadow-md rounded-full px-8 py-2 text-xl font-medium text-white">login</button>
+                    <Link to="/login">
+                        <button className="bg-[#F54748] active:scale-90 transition duration-150 transform hover:shadow-xl shadow-md rounded-full px-8 py-2 text-xl font-medium text-white">login</button>
+                    </Link>
                 </div>
             </div>
 

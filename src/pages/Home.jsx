@@ -11,9 +11,9 @@ import RecommendateFoods from '../components/RecommendateFoods'
 const Home = () => {
   return (
     <div className='home'>
-      <Navbar />
+
       <Header />
-      <RecommendateFoods/>
+      <RecommendateFoods />
       <Special />
       <Service />
       <NewFoods />
