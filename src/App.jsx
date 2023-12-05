@@ -11,6 +11,7 @@ import Register from './pages/Register'
 import RecommendateFoods from './components/RecommendateFoods'
 import Menu from './pages/Menu'
 import Footer from './components/Footer'
+import FoodPage from './pages/FoodPage'
 
 function App() {
 
@@ -41,6 +42,12 @@ function App() {
           path="/register"
           element={
             <Register />
+          }
+        />
+        <Route
+          path="/food-details"
+          element={
+            <FoodPage />
           }
         />
       </Routes>

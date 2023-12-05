@@ -46,7 +46,7 @@ const Menu = () => {
         setActive(btn.id)
     }
     return (
-        <div className='py-3 px-10 sm:px-4 md:px-6 lg:px-4'>
+        <div className='py-3 px-10 sm:px-4 md:px-6 lg:px-6'>
             <div className="container mx-auto py-[2vh]">
                 <div className="flex flex-wrap justify-center mb-8 gap-5">
                     {catagory?.map((btn) => (

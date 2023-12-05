@@ -3,7 +3,7 @@ import { FaPlay, FaSearch } from 'react-icons/fa'
 import sheff from '../assets/sheef.png'
 const Service = () => {
     return (
-        <div className="py-3 px-10 sm:px-4 md:px-6 lg:px-4">
+        <div className="py-3 px-10 sm:px-4 md:px-6 lg:px-6">
             <div className="container mx-auto py-[2vh]">
                 <div className="grid grid-cols-1 relative lg:grid-cols-2 gap-8 items-center">
                     <img src={sheff} className="h-[32rem] mx-auto justify-end" alt="" />

@@ -3,7 +3,7 @@ import logo from '../../assets/Logo.svg'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
-        <div className='py-3 px-10 sm:px-4 md:px-6 lg:px-4'>
+        <div className='py-3 px-10 sm:px-4 md:px-6 lg:px-6'>
             <div className="container mx-auto flex items-center justify-between">
                 <img src={logo} alt="" className="logo cursor-pointer" />
                 <div className="right_navbar flex gap-8 items-center">
