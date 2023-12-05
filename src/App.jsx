@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/LogIn'
 import Register from './pages/Register'
+import RecommendateFoods from './components/RecommendateFoods'
+import Menu from './pages/Menu'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -23,6 +26,12 @@ function App() {
           }
         />
         <Route
+          path="/menu"
+          element={
+            <Menu />
+          }
+        />
+        <Route
           path="/login"
           element={
             <Login />
@@ -35,7 +44,7 @@ function App() {
           }
         />
       </Routes>
-
+      <Footer />
     </>
   )
 }
