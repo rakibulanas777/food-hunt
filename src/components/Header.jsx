@@ -37,7 +37,7 @@ const Header = () => {
                         </div>
                         <div className="flex gap-8 items-center">
                             <button className="bg-[#F54748] active:scale-90 transition duration-150 transform hover:shadow-xl shadow-md rounded-full px-8 py-2 text-xl font-medium text-white">
-                                login
+                                explore more
                             </button>
                             <div className="flex gap-4 items-center">
                                 <div className="h-14 w-14 shadow-md cursor-pointer relative bg-white rounded-full">
