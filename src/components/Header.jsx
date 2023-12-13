@@ -52,9 +52,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-
                     <img src={header} className="h-[28rem] mx-auto justify-end" alt="" />
-
                 </div>
             </div>
 

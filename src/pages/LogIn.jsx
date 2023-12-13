@@ -9,37 +9,38 @@ import logo from "../assets/Logo.svg";
 const Login = () => {
     const navigate = useNavigate();
     // const { getUser } = useUserContext();
-    // const handleOnSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const email = e.target.email.value;
-    //     const password = e.target.password.value;
-    //     const loginData = { email, password };
+    const handleOnSubmit = async (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const loginData = { email, password };
 
-    //     fetch("https://doc-finder.onrender.com/api/v1/user/login", {
-    //         method: "POST",
-    //         headers: {
-    //             "content-type": "application/json",
-    //         },
-    //         body: JSON.stringify(loginData),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             if (data.success) {
-    //                 localStorage.setItem("token", data.data.token);
-    //                 toast.success(data.message);
-    //                 // getUser(data);
-    //                 e.target.reset();
-    //                 navigate("/");
-    //             } else {
-    //                 toast.error(data.message);
-    //             }
-    //         });
-    // };
+        fetch("http://localhost:8000/api/v1/user/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    localStorage.setItem("token", data.data.token);
+                    toast.success(data.message);
+                    // getUser(data);
+                    e.target.reset();
+                    navigate("/");
+                } else {
+                    toast.error(data.message);
+                }
+            });
+    };
     return (
         <div className="login">
             <div className=" h-screen">
                 <form
                     className="ease-in duration-300 w-[80%] sm:w-max shadow-sm backdrop-blur-md bg-white/80 lg:w-max mx-auto flex flex-col items-center rounded-md px-8 py-5"
+                    onSubmit={handleOnSubmit}
                 >
                     <NavLink to="/">
                         <img src={logo} alt="" className="logo text-center mx-auto cursor-pointer mb-6" />

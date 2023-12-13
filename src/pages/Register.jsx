@@ -1,14 +1,56 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../assets/Logo.svg";
-
+import avatar from "../assets/profile.png"
+import axios from "axios";
 // import { useUserContext } from "../context/userContext";
 const Register = () => {
     const navigate = useNavigate();
     // const { getUser } = useUserContext();
+    const [postImage, setPostImage] = useState({ profileImage: "" })
+
+    // const createPost = async (newImage) => {
+    //     try {
+    //         await axios.post(url, newImage)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // createPost(postImage)
+    // console.log("Uploaded")
+    // }
+    const [image, setImage] = useState({});
+    const [uploading, setUploading] = useState(false);
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        let formData = new FormData();
+        formData.append("image", file);
+        console.log([...formData]);
+        setUploading(true);
+        try {
+            const { data } = await axios.post("http://localhost:8000/api/v1/user/upload-image", formData);
+            // console.log("Image Upload", data);
+            setUploading(false);
+            setImage({
+                url: data.url,
+                public_id: data.public_id,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+
+        setPostImage({ ...postImage, profileImage: base64 })
+    }
     const handleOnSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -16,9 +58,10 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const passwordConfrim = form.confrimPassword.value;
-        const userData = { name, email, password, passwordConfrim };
+        const profileImage = image?.url
+        const userData = { name, email, profileImage, password, passwordConfrim };
 
-        fetch("https://doc-finder.onrender.com/api/v1/user/register", {
+        fetch("http://localhost:8000/api/v1/user/register", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -40,19 +83,27 @@ const Register = () => {
             });
     };
     return (
-        <div className="register h-screen">
+        <div className="register">
             <div className="w-full mx-auto">
                 <form
                     className="ease-in duration-300 w-[80%] sm:w-max shadow-sm backdrop-blur-md bg-white/80 lg:w-max mx-auto rounded-md px-8 py-5"
                     onSubmit={handleOnSubmit}
                 >
-                    <NavLink to="/">
-                        <img
-                            src={logo}
-                            alt=""
-                            className="logo cursor-pointer mb-4 mx-auto"
-                        />
-                    </NavLink>
+                    <label htmlFor="file-upload" className='custom-file-upload'>
+                        <img src={image?.url || avatar} className="h-32 cursor-pointer mx-auto w-32 bg-contain rounded-full" alt="" />
+                    </label>
+                    <label className="block text-center text-gray-900 text-base  mb-2" htmlFor="name">
+                        Profile Picture
+                    </label>
+                    <input
+                        type="file"
+                        lable="Image"
+                        name="myFile"
+                        id='file-upload'
+                        className=" hidden"
+                        accept='.jpeg, .png, .jpg'
+                        onChange={handleImage}
+                    />
                     <div className="mb-3">
                         <label className="block text-gray-900 text-sm  mb-2" htmlFor="name">
                             Name
@@ -134,3 +185,16 @@ const Register = () => {
 };
 
 export default Register;
+
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        };
+        fileReader.onerror = (error) => {
+            reject(error)
+        }
+    })
+}
