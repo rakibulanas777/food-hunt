@@ -16,6 +16,9 @@ import ProtectedRoute from './components/ProtectedRoute'
 import PublicRoute from './components/PublicRoute'
 import ApplyRestourant from './pages/ApplyRestourant'
 import ApplyRestourantPayment from './pages/ApplyRestourantPayment'
+import VerifyOtp from './pages/VerifyOtp'
+import Myrestourant from './pages/Myrestourant'
+import Allrestaurant from './pages/admin/Allrestaurant'
 
 function App() {
 
@@ -44,6 +47,30 @@ function App() {
             <PublicRoute>
               <Login />
             </PublicRoute>
+          }
+        />
+        <Route
+          path="/verifyotp"
+          element={
+            <ProtectedRoute>
+              <VerifyOtp />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/myrestourant/:ownerId"
+          element={
+            <ProtectedRoute>
+              <Myrestourant />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/allrestourant/:ownerId"
+          element={
+            <ProtectedRoute>
+              <Allrestaurant />
+            </ProtectedRoute>
           }
         />
         <Route
